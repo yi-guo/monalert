@@ -1,6 +1,6 @@
 # monalert
 
-A framework with Python scripts for monitoring events of interest and notify the user upon its occurance. Note that the framework for now triggers an one-time query only, and therefore, relies on the host machine for task scheduling.
+A framework with Python scripts for monitoring user specified events of interest and notify the user upon occurrence. Note that the framework for now triggers an one-time query only, and therefore, relies on the host machine for task scheduling.
 
 The framework as of now only supports monitoring USCIS case status. More are on the way, and ideas are welcomed! 
 
