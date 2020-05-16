@@ -4,8 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-click = "*"
 beautifulsoup4 = "*"
+click = "*"
 pymongo = "*"
 requests = "*"
 

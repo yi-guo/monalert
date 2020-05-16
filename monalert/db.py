@@ -12,7 +12,7 @@ MONGO_DATABASE: Final[str] = "monalert"
 
 
 def get_mongo_database() -> pymongo.database.Database:
-    envs: List[Final[str]] = [
+    envs: List[str] = [
         ENV_MONGO_HOST,
         ENV_MONGO_PORT,
         ENV_MONGO_INITDB_ROOT_USERNAME,
