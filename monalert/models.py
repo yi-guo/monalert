@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from typing import Dict, Final, List, Optional
 
 import os
@@ -71,7 +71,7 @@ class Monalert(ABC):
                 "token": self.__pushover_token,
                 "user": self.__pushover_user,
                 "device": self.__pushover_device,
-                **self._get_notification(),
+                **asdict(self._get_notification()),
             },
         )
         pushover_status: int = int(response.json().get(
