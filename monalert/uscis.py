@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup, element
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from datetime import datetime
 from monalert import db, models
 from typing import Dict, Final, List, Optional
@@ -102,15 +102,10 @@ class USCIS(models.Monalert):
             "utc_time",
             direction=pymongo.DESCENDING,
         ).limit(1)
-        return None if cursor.count() == 0 else Status(
-            utc_time=cursor[0]["utc_time"],
-            receipt_num=cursor[0]["receipt_num"],
-            status=cursor[0]["status"],
-            description=cursor[0]["description"],
-        )
+        return None if cursor.count() == 0 else Status(**cursor[0])
 
     def __save_curr_status(self, curr_status: Status) -> None:
-        self.__mongo_collection.insert_one(curr_status)
+        self.__mongo_collection.insert_one(asdict(curr_status))
 
     def __get_receipt_num_masked(self) -> str:
         return self.__receipt_num[-MASK_LENGTH_REMAINING:].rjust(
