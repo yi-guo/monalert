@@ -102,7 +102,12 @@ class USCIS(models.Monalert):
             "utc_time",
             direction=pymongo.DESCENDING,
         ).limit(1)
-        return None if cursor.count() == 0 else Status(**cursor[0])
+        return None if cursor.count() == 0 else Status(
+            utc_time=cursor[0]["utc_time"],
+            receipt_num=cursor[0]["receipt_num"],
+            status=cursor[0]["status"],
+            description=cursor[0]["description"],
+        )
 
     def __save_curr_status(self, curr_status: Status) -> None:
         self.__mongo_collection.insert_one(asdict(curr_status))
