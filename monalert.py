@@ -1,3 +1,4 @@
+from monalert.dmv_ny import DMVNewYork
 from monalert.uscis import USCIS
 from typing import Tuple
 
@@ -7,6 +8,11 @@ import click
 @click.group()
 def cli() -> None:
     pass
+
+
+@cli.command(help="Check DMV NY available appointments")
+def dmv_ny() -> None:
+    DMVNewYork().monitor_and_alert_if_should()
 
 
 @cli.command(help="Check USCIS case status and notify upon case status change")
